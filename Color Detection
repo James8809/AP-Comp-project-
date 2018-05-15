@@ -1,0 +1,43 @@
+import numpy as np
+import cv2
+from PIL import ImageGrab
+
+import time
+
+# multiple cascades: https://github.com/Itseez/opencv/tree/master/data/haarcascades
+
+# https://github.com/Itseez/opencv/blob/master/data/haarcascades/haarcascade_frontalface_default.xml
+face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
+# https://github.com/Itseez/opencv/blob/master/data/haarcascades/haarcascade_eye.xml
+eye_cascade = cv2.CascadeClassifier('haarcascade_eye.xml')
+
+x_res = 1920
+y_res = 1080
+box_width = 400
+box_height = 400
+x_1 = int((x_res - box_width) / 2)
+y_1 = int((y_res - box_height) / 2)
+x_2 = x_1 + box_width
+y_2 = y_1 + box_height
+
+def screencap():
+    # cnt = 0
+    # start = time.perf_counter()
+    # while(time.perf_counter() - start < 1):
+    while(1 == 1):
+        img = ImageGrab.grab(bbox=(x_1, y_1, x_2, y_2)) #bbox specifies specific region (bbox= x,y,width,height)
+        img_np = np.array(img)
+        frame = cv2.cvtColor(img_np, cv2.COLOR_BGR2RGB)
+        # weak = np.array([190, 130, 70])
+        # strong = np.array([220, 160, 90])
+        weak = np.array([70, 130, 190])
+        strong = np.array([90, 160, 220])
+        test = cv2.inRange(frame, weak, strong)
+        cv2.imshow("1", frame)
+        cv2.imshow("2", test)
+        
+        # cnt+=1
+        cv2.waitKey(1)
+    # print(cnt)
+cap = screencap()
+cap.destroyAllWindows()
