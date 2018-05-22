@@ -1,9 +1,10 @@
 import numpy as np
 import cv2
 from PIL import ImageGrab
+import pyautogui
+from pynput.mouse import Listener
 from scipy import stats
 from PIL import Image
-import pyautogui
 import time
 
 x_res = 1920
@@ -32,12 +33,11 @@ while(True):
     cv2.waitKey(1)
 
     points = cv2.findNonZero(detect)
-    if (points is not None):
+    if (points is not None ):
         avg = np.mean(points, axis=1)
         cal = np.mean(avg, axis=0)
         pointInScreen = (x_1 + cal[0], y_1 + cal[1])
         # print(cal)
-        # print(pointInScreen)
         pyautogui.moveTo(pointInScreen)
 
 cap = screencap()
