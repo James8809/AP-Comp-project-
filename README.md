@@ -5,3 +5,6 @@ it's not perfection but it's still something
 Further improvements - 
   import call the moveTo function when left mouse clicked
   overwatch in-game (not training ground) detection
+  screenlock bypass
+  User Interface interaction
+  lower framerate (C Based)
