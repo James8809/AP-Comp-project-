@@ -20,21 +20,23 @@ stry_res = input("type your monitor's height resolution")
 strbox_width = input("your box's width: ")
 strbox_height = input("your box's height: ")
 
-if ValueError :
-    print("please input NUMBERS")
-    exit()
+
 
 x_res = int(strx_res)
 y_res = int(stry_res)
 box_width = int(strbox_width)
 box_height = int(strbox_height)
 
+# if ValueError :
+#     print("please input NUMBERS")
+#     exit()
+
 
 x_1 = int((x_res - box_width) / 2)
 y_1 = int((y_res - box_height) / 2) - 70
 x_2 = x_1 + box_width
 y_2 = y_1 + box_height
-# print(x_1, y_1, x_2, y_2)
+print(x_1, y_1, x_2, y_2)
 weak = np.array([50, 29, 143])
 strong = np.array([130, 69, 203])
 
@@ -53,7 +55,7 @@ while(True):
     points = cv2.findNonZero(detect)
 
     if points is not None:
-        print(points)
+        # print(points)
         avg = np.mean(points, axis=1)
         cal = np.mean(avg, axis=0)
         pointInScreen = (x_1 + cal[0], y_1 + cal[1])
